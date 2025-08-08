@@ -1,3 +1,3 @@
 <p align="center">
-  <img src="https://i.imgur.com/A6dXfVb.png" alt="Banner" width="100%" />
+  <img src="https://i.imgur.com/VwhQeqv.png" alt="Game UI Preview" width="600px" />
 </p>

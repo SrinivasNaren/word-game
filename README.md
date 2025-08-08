@@ -1,14 +1,20 @@
-<!-- Top banner -->
-<img src="https://i.imgur.com/A6dXfVb.png" width="100%" />
 
-<!-- Kids playing image near Why Play section -->
-<img src="https://i.imgur.com/0KHcEkt.png" width="400px" />
 
-<!-- Game UI Preview -->
-<img src="https://i.imgur.com/VwhQeqv.png" width="600px" />
+🙋‍♂️ Author
 
-<!-- Coding game icon -->
-<img src="https://i.imgur.com/bHKTrs6.png" width="150px" />
+**Created by Srinivas Naren**  
+📧 [Contact me](srinivasnaren007@gmail.com) (optional)  
+🔗 [GitHub Profile](https://github.com/srinivasnaren)
 
-<!-- Thank you footer -->
-<img src="https://i.imgur.com/y3cuM38.png" width="300px" />
+
+🪄 Ideas for Future Improvements
+
+- Add "Play Again" button
+- Add difficulty levels (Easy, Medium, Hard)
+- Use localStorage to save high scores
+- Convert to a mobile app using PWA
+
+
+ 🪙 License
+
+This project is open-source and free to use 🎉

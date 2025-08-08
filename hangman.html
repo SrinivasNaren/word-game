@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #creator {
+      font-weight: bold;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    #game-box {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      display: none; /* hidden until name is entered */
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #guessed {
+      font-size: 28px;
+      letter-spacing: 8px;
+      margin: 20px 0;
+      color: #444;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 60%;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    #chances {
+      font-weight: bold;
+      color: #d32f2f;
+    }
+
+    #footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    #name-box {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="name-box">
+    <h1>Word Guessing Game</h1>
+    <p id="creator">Game by Srinivas Naren</p>
+    <input type="text" id="playerName" placeholder="Enter your name">
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="game-box">
+    <p>Hello, <span id="showName"></span>! You have <span id="chances">10</span> chances.</p>
+
+    <p id="guessed">********</p>
+
+    <input type="text" id="userInput" placeholder="Enter a letter or word">
+    <button onclick="checkGuess()">Submit</button>
+
+    <p id="status"></p>
+  </div>
+
+  <p id="footer">© 2025 Created by Srinivas Naren</p>
+
+  <script>
+    const words = ["FACEBOOK", "PYTHON", "PROGRAM", "SCIENCE", "CHATGPT"];
+    const correctWord = words[Math.floor(Math.random() * words.length)];
+    let guessedWord = "*".repeat(correctWord.length).split("");
+    let chances = 10;
+    let moves = 0;
+    let player = "";
+
+    function startGame() {
+      const nameInput = document.getElementById("playerName").value.trim();
+      if (nameInput === "") {
+        alert("Please enter your name to start.");
+        return;
+      }
+
+      player = nameInput;
+      document.getElementById("showName").innerText = player;
+      document.getElementById("name-box").style.display = "none";
+      document.getElementById("game-box").style.display = "block";
+      document.getElementById("guessed").innerText = guessedWord.join("");
+    }
+
+    function checkGuess() {
+      const input = document.getElementById("userInput").value.toUpperCase().trim();
+      const status = document.getElementById("status");
+      document.getElementById("userInput").value = "";
+      moves++;
+
+      if (!input.match(/^[A-Z]+$/)) {
+        status.innerText = "⚠️ Please enter only letters.";
+        return;
+      }
+
+      if (input.length === 1) {
+        if (correctWord.includes(input)) {
+          for (let i = 0; i < correctWord.length; i++) {
+            if (correctWord[i] === input) {
+              guessedWord[i] = input;
+            }
+          }
+          status.innerText = `✅ '${input}' is correct!`;
+        } else {
+          chances--;
+          status.innerText = `❌ '${input}' is not in the word.`;
+        }
+      } else {
+        if (input === correctWord) {
+          guessedWord = correctWord.split("");
+          document.getElementById("guessed").innerText = guessedWord.join("");
+          status.innerText = `🎉 You guessed the word '${correctWord}' in ${moves} moves!\nThank you ${player} for playing!`;
+          return;
+        } else {
+          chances--;
+          status.innerText = "❌ Incorrect word!";
+        }
+      }
+
+      document.getElementById("guessed").innerText = guessedWord.join("");
+      document.getElementById("chances").innerText = chances;
+
+      if (guessedWord.join("") === correctWord) {
+        status.innerText = `🎉 You guessed the word '${correctWord}' in ${moves} moves!\nThank you ${player} for playing!`;
+      } else if (chances === 0) {
+        status.innerText = `💀 Game Over! The correct word was '${correctWord}'.\nThank you ${player} for playing!`;
+      }
+    }
+  </script>
+
+</body>
+</html>
